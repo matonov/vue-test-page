@@ -14,6 +14,17 @@
                 <span class="oldPrice">{{ oldPrice }}</span>
                 <span class="discount">{{ discount }}</span>
             </div>
+            <div v-if="jsonData.NewTag" class="newTag">NOVINKA</div>
+            <div class="control-panel">
+                <div class="wrapper-cart">
+                    <input type="number" v-model="cart"/>
+                </div>
+                <button v-on:click="cart++"
+                    :disabled="!inStock"
+                    class="add-button"
+                    :class="{ disabledButton: !inStock }"
+                >Pridať do košíka</button>
+            </div>
         </div>
     </div>
 

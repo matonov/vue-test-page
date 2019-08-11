@@ -6,7 +6,8 @@ var CURRENCY_TABLE = {
 var app = new Vue({
     el: '#app',
     data: {
-        jsonData: []
+        jsonData: [],
+        cart: 0
     },
     created: function () {
         // nacitame json data z API
@@ -25,7 +26,11 @@ var app = new Vue({
         },
         discount() {
             return getDiscount(this.jsonData.Discount);
+        },
+        inStock() {
+            return this.cart < this.jsonData.Quantity;
         }
+
     }
 });
 

@@ -17,7 +17,12 @@
             <div v-if="jsonData.NewTag" class="newTag">NOVINKA</div>
             <div class="control-panel">
                 <div class="wrapper-cart">
-                    <input type="number" v-model="cart"/>
+                    <input
+                        v-model="cart"
+                        type="number"
+                        min="0"
+                        :max="jsonData.Quantity"
+                    />
                 </div>
                 <button v-on:click="cart++"
                     :disabled="!inStock"

@@ -50,3 +50,9 @@
 .disabledButton {
     background-color: gray;
 }
+.wrapper-star-rating {
+    margin: 30px 0;
+}
+.inline-block {
+    display: inline-block;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Application</title>
+    <link rel="stylesheet" href="vue-test-page.css">
+</head>
+<body>
+    <div id="app">
+        <div class="product">
+            <h1>{{ jsonData.Name }}</h1>
+            <div>
+                <span class="price">{{ price }}</span>
+                <span class="oldPrice">{{ oldPrice }}</span>
+                <span class="discount">{{ discount }}</span>
+            </div>
+            <div v-if="jsonData.NewTag" class="newTag">NOVINKA</div>
+            <div class="control-panel">
+                <div class="wrapper-cart">
+                    <input
+                        v-model="cart"
+                        type="number"
+                        min="0"
+                        :max="jsonData.Quantity"
+                    />
+                </div>
+                <button v-on:click="cart++"
+                    :disabled="!inStock"
+                    class="add-button"
+                    :class="{ disabledButton: !inStock }"
+                >Pridať do košíka</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="vue-test-page.js"></script>
+</body>
+</html>

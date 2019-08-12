@@ -1,1 +1,1 @@
-# vue-test-page
+# Single page application using Vue.js

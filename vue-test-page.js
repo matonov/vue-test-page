@@ -1,5 +1,3 @@
-Vue.component('star-rating', VueStarRating.default);
-
 var DATA_PRODUCT_URL = 'https://jsonstorage.net/api/items/4734fe5e-895c-4fc4-8fec-477a12de982b';
 var DATA_RATINGS_URL = 'https://jsonstorage.net/api/items/48f299c3-1a59-4ebb-9cd4-0a25aa6c2ffa';
 
@@ -14,6 +12,11 @@ var COLORS_TABLE = {
     'žltá': 'yellow',
     'fialová': 'purple'
 };
+
+/**
+ * Thirdparty component pre zobrazovanie hodnotenia
+ */
+Vue.component('star-rating', VueStarRating.default);
 
 /**
  * Custom component pre moznost vyberu farby produktu

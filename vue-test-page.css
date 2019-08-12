@@ -50,3 +50,26 @@
 .disabledButton {
     background-color: gray;
 }
+.wrapper-star-rating {
+    margin: 30px 0;
+}
+.inline-block {
+    display: inline-block;
+}
+.ratingCount {
+    color: gray
+}
+.wrapper-color {
+    margin-top: 15px;
+}
+.color-marker {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.bold {
+    font-weight: bold;
+}

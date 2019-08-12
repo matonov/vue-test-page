@@ -2,29 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Jednoduchá web aplikácia s použitím Vue.js">
+    <meta name="keywords" content="HTML,CSS,JavaScript,Vue.js">
+    <meta name="author" content="Martin Novotný">
+    <meta name="robots" content="noindex,follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Application</title>
     <link rel="stylesheet" href="vue-test-page.css">
 </head>
 <body>
     <div id="app">
         <div class="product">
-            <h1>{{ jsonData.Name }}</h1>
+            <h1>{{ product.Name }}</h1>
+            <div class="wrapper-star-rating">
+                <star-rating
+                    v-model="rating"
+                    :star-size="20"
+                    :show-rating="false"
+                    :inline="true"
+                    @rating-selected ="setRating">
+                </star-rating>
+                <span class="ratingCount">{{ ratingCount }}</span>
+            </div>
             <div>
                 <span class="price">{{ price }}</span>
                 <span class="oldPrice">{{ oldPrice }}</span>
                 <span class="discount">{{ discount }}</span>
             </div>
-            <div v-if="jsonData.NewTag" class="newTag">NOVINKA</div>
+            <div v-if="product.NewTag" class="newTag">NOVINKA</div>
+            <div class="wrapper-color">
+                <color-picker v-bind:colors="pickerColors"></color-picker>
+            </div>
             <div class="control-panel">
                 <div class="wrapper-cart">
                     <input
                         v-model="cart"
                         type="number"
                         min="0"
-                        :max="jsonData.Quantity"
+                        :max="product.Quantity"
                     />
                 </div>
-                <button v-on:click="cart++"
+                <button
+                    v-on:click="cart++"
                     :disabled="!inStock"
                     class="add-button"
                     :class="{ disabledButton: !inStock }"
@@ -34,6 +53,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/vue-star-rating/dist/star-rating.min.js"></script>
     <script src="vue-test-page.js"></script>
 </body>
 </html>

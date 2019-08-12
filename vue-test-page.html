@@ -17,7 +17,7 @@
                     :inline="true"
                     @rating-selected ="setRating">
                 </star-rating>
-                <span>{{ ratingCount }}</span>
+                <span class="ratingCount">{{ ratingCount }}</span>
             </div>
             <div>
                 <span class="price">{{ price }}</span>
@@ -25,6 +25,9 @@
                 <span class="discount">{{ discount }}</span>
             </div>
             <div v-if="product.NewTag" class="newTag">NOVINKA</div>
+            <div class="wrapper-color">
+                <color-picker v-bind:colors="pickerColors"></color-picker>
+            </div>
             <div class="control-panel">
                 <div class="wrapper-cart">
                     <input
@@ -34,7 +37,8 @@
                         :max="product.Quantity"
                     />
                 </div>
-                <button v-on:click="cart++"
+                <button
+                    v-on:click="cart++"
                     :disabled="!inStock"
                     class="add-button"
                     :class="{ disabledButton: !inStock }"

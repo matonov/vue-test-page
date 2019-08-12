@@ -2,9 +2,78 @@ Vue.component('star-rating', VueStarRating.default);
 
 var DATA_PRODUCT_URL = 'https://jsonstorage.net/api/items/4734fe5e-895c-4fc4-8fec-477a12de982b';
 var DATA_RATINGS_URL = 'https://jsonstorage.net/api/items/48f299c3-1a59-4ebb-9cd4-0a25aa6c2ffa';
+
 var CURRENCY_TABLE = {
     'EUR': '€'
 };
+var COLORS_TABLE = {
+    'čierna': 'black',
+    'biela': 'white',
+    'červená': 'red',
+    'modrá': 'blue',
+    'žltá': 'yellow',
+    'fialová': 'purple'
+};
+
+/**
+ * Custom component pre moznost vyberu farby produktu
+ */
+Vue.component('color-picker', {
+    props: ['colors'],
+    template: `
+    <div>
+        <div>
+            <span class="bold">Farba:</span>
+            <span>{{ colorName }}</span>
+        </div>
+        <div
+            v-for="color in colors"
+            class="color-marker"
+            :style="colorFormatter(color)"
+            @click="selectColor(color)"
+        ></div>
+    </div>
+    `,
+    data() {
+        return {
+            colorName: 'red'
+        }
+    },
+    mounted() {
+        if (localStorage.colorName) {
+            this.colorName = localStorage.colorName;
+        }
+    },
+    watch: {
+        colorName(newColorName) {
+            localStorage.colorName = newColorName;
+        }
+    },
+    methods: {
+        colorFormatter: function (color) {
+            var resultStyle = {};
+            var resultColor = COLORS_TABLE[color];
+
+            // oznacenie vybranej farby
+            if (color === this.colorName) {
+                resultStyle['box-shadow'] = '0 0 0px 4px gray';
+            }
+
+            // osetrenie bieleho kruhu
+            if (resultColor === 'white') {
+                resultStyle.border = '1px solid black';
+            }
+
+            resultStyle.backgroundColor = resultColor;
+
+            return resultStyle;
+        },
+        selectColor: function (color) {
+            this.colorName = color;
+        }
+    }
+})
+
 
 var app = new Vue({
     el: '#app',
@@ -60,6 +129,13 @@ var app = new Vue({
                 }
             }
             return count + ' ' + suffix;
+        },
+        pickerColors() {
+            if (this.product == null || this.product.params == null) {
+                return [];
+            }
+
+            return this.product.params[1];
         }
     },
     methods: {

@@ -39,7 +39,7 @@ Vue.component('color-picker', {
     `,
     data() {
         return {
-            colorName: 'red'
+            colorName: ''
         }
     },
     mounted() {
